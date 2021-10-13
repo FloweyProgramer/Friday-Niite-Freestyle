@@ -54,7 +54,7 @@ class KadeEngineData
 		if (FlxG.save.data.accuracyMod == null)
 			FlxG.save.data.accuracyMod = 1;
 
-		if (FlxG.save.data.watermark == null)
+		if (FlxG.save.data.watermark != true)
 			FlxG.save.data.watermark = true;
 
 		if (FlxG.save.data.ghost == null)
@@ -73,7 +73,7 @@ class KadeEngineData
 			FlxG.save.data.botplay = false;
 
 		if (FlxG.save.data.cpuStrums == null)
-			FlxG.save.data.cpuStrums = false;
+			FlxG.save.data.cpuStrums = true;
 
 		if (FlxG.save.data.strumline == null)
 			FlxG.save.data.strumline = false;
@@ -81,11 +81,19 @@ class KadeEngineData
 		if (FlxG.save.data.customStrumLine == null)
 			FlxG.save.data.customStrumLine = 0;
 
+		if (FlxG.save.data.truebops == null)
+			FlxG.save.data.truebops = true; 
+
+		if (FlxG.save.data.bugSave == null)
+			FlxG.save.data.truebops = true;
+			FlxG.save.data.bugSave == true;
+
 		Conductor.recalculateTimings();
 		PlayerSettings.player1.controls.loadKeyBinds();
 		KeyBinds.keyCheck();
 
 		Main.watermarks = FlxG.save.data.watermark;
+		Main.truebops = FlxG.save.data.truebops;
 
 		(cast (Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
 	}

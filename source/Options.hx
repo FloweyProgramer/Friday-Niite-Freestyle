@@ -96,6 +96,29 @@ class DFJKOption extends Option
 	}
 }
 
+class ExtraBops extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		Main.truebops = !Main.truebops;
+		FlxG.save.data.truebops = Main.truebops;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Extra Bops " + (Main.truebops ? "on" : "off");
+	}
+
+}
+
 class CpuStrums extends Option
 {
 	public function new(desc:String)
@@ -555,15 +578,14 @@ class WatermarkOption extends Option
 
 	public override function press():Bool
 	{
-		Main.watermarks = !Main.watermarks;
-		FlxG.save.data.watermark = Main.watermarks;
+	
 		display = updateDisplay();
 		return true;
 	}
 
 	private override function updateDisplay():String
 	{
-		return "Watermarks " + (Main.watermarks ? "on" : "off");
+		return "Watermarks On";
 	}
 }
 

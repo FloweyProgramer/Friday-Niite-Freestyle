@@ -1,6 +1,8 @@
 bf
+bf-duet
 dad
 gf
+pico-gf
 spooky
 pico
 mom
@@ -12,6 +14,7 @@ bf-christmas
 gf-christmas
 monster
 bf-pixel
+bf-pixel-glitch
 senpai
 senpai-angry
 spirit

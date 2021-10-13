@@ -24,20 +24,20 @@ class StoryMenuState extends MusicBeatState
 	var scoreText:FlxText;
 
 	var weekData:Array<Dynamic> = [
-		['Tutorial'],
-		['Bopeebo', 'Fresh', 'Dad Battle'],
-		['Spookeez', 'South', "Monster"],
-		['Pico', 'Philly Nice', "Blammed"],
-		['Satin Panties', "High", "Milf"],
-		['Cocoa', 'Eggnog', 'Winter Horrorland'],
-		['Senpai', 'Roses', 'Thorns']
+		[''],
+		['Doobop','Refreshed','Spooky-Fight'],
+		['Creepz', 'North', "Night-Lights"],
+		['Gunfight', 'Funky-Nice', 'Turf-War'],
+		['Ecstacy', 'Cruise-Control', 'Joyride'],
+		['Slurry', 'Flurry', 'Snowblind'],
+		['Social-Suicide', 'Recess', 'Splinters']
 	];
 	var curDifficulty:Int = 1;
 
-	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true];
+	public static var weekUnlocked:Array<Bool> = [false, true, true, true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
-		['', 'bf', 'gf'],
+		['', '', ''],
 		['dad', 'bf', 'gf'],
 		['spooky', 'bf', 'gf'],
 		['pico', 'bf', 'gf'],
@@ -49,11 +49,11 @@ class StoryMenuState extends MusicBeatState
 	var weekNames:Array<String> = [
 		"",
 		"Daddy Dearest",
-		"Spooky Month",
+		"Creepy Month",
 		"PICO",
 		"MOMMY MUST MURDER",
 		"RED SNOW",
-		"Hating Simulator ft. Moawling"
+		"WEEK 6 WEEK 6"
 	];
 
 	var txtWeekTitle:FlxText;
@@ -381,9 +381,9 @@ class StoryMenuState extends MusicBeatState
 
 		txtTracklist.text = "Tracks\n";
 		var stringThing:Array<String> = weekData[curWeek];
-
+		var r = ~/-/g;
 		for (i in stringThing)
-			txtTracklist.text += "\n" + i;
+			txtTracklist.text += "\n" + r.replace(i, " ");
 
 		txtTracklist.text = txtTracklist.text.toUpperCase();
 

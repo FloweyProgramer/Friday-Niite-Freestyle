@@ -22,7 +22,12 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			case 'bf-pixel':
 				stageSuffix = '-pixel';
-				daBf = 'bf-pixel-dead';
+				daBf = 'error';
+			case 'bf-pixel-glitch':
+				stageSuffix = '-pixel';
+				daBf = 'error';
+			case 'bf-duet':
+				daBf = 'bf-duet';
 			default:
 				daBf = 'bf';
 		}
@@ -45,7 +50,8 @@ class GameOverSubstate extends MusicBeatSubstate
 		FlxG.camera.scroll.set();
 		FlxG.camera.target = null;
 
-		bf.playAnim('firstDeath');
+		if(PlayState.SONG.player1 != 'bf-pixel' && PlayState.SONG.player1.toLowerCase() != 'bf-pixel-glitch')
+			bf.playAnim('firstDeath');
 	}
 
 	override function update(elapsed:Float)
@@ -67,16 +73,21 @@ class GameOverSubstate extends MusicBeatSubstate
 				FlxG.switchState(new FreeplayState());
 			PlayState.loadRep = false;
 		}
+		if(PlayState.SONG.player1.toLowerCase() != 'bf-pixel' && PlayState.SONG.player1.toLowerCase() != 'bf-pixel-glitch'){
+			if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.curFrame == 12)
+			{
+				FlxG.camera.follow(camFollow, LOCKON, 0.01);
+			}
 
-		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.curFrame == 12)
-		{
-			FlxG.camera.follow(camFollow, LOCKON, 0.01);
+			if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
+			{
+				FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
+			}
 		}
-
-		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
-		{
-			FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
+		else{
+			FlxG.camera.follow(camFollow, LOCKON);
 		}
+		
 
 		if (FlxG.sound.music.playing)
 		{
@@ -98,7 +109,8 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (!isEnding)
 		{
 			isEnding = true;
-			bf.playAnim('deathConfirm', true);
+			if(PlayState.SONG.player1.toLowerCase() != 'bf-pixel' && PlayState.SONG.player1.toLowerCase() != 'bf-pixel-glitch')
+				bf.playAnim('deathConfirm', true);
 			FlxG.sound.music.stop();
 			FlxG.sound.play(Paths.music('gameOverEnd' + stageSuffix));
 			new FlxTimer().start(0.7, function(tmr:FlxTimer)
